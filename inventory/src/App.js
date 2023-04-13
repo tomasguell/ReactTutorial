@@ -1,12 +1,21 @@
 import './App.css';
-import Info from "./info.js"
+import SearchBar from './searchBar';
+import {useState} from 'react';
 
 function App() {
+  const [filters, setFilters] = useState({});
+
+  const updateFilters = (searchParams) => {
+    setFilters(searchParams);
+  }
+
   return (
     <div className="App">
-      <Info/>
-      <AddItem/>
-      <p>Bare bones app</p>
+      <SearchBar callback={updateFilters} name="TOMAS"></SearchBar>
+      <p>Name:{'name' in data ? data['name']: "No data to display"}</p>
+      <p>Max Price:{'price' in data ? data['price']: "No data to display"}</p>
+      <p>Type:{'type' in data ? data['type']: "No data to display"}</p>
+      <p>Brand:{'brand' in data ? data['brand']: "No data to display"}</p>
     </div>
   );
 }
@@ -14,17 +23,12 @@ function App() {
 
 
 
-function AddItem(){
-  const value = "default";
-  return(
 
-    <form>
-      <label for="text-form">Type something:</label>
-      <input type="text" value={value} id="text-form"/>
 
-    </form>
-  )
-}
+
+
+
+
 
 
 export default App;
